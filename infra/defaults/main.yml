@@ -1,0 +1,5 @@
+---
+ntp_pkg_state: 'installed'
+ntp_service_state: 'started'
+ntp_service_enabled: 'yes'
+ntp_config_server: [ 'ntp3.sptime.se', 'ntp4.sptime.se', 'ntp1.sptime.se', 'ntp2.sptime.se' ]
