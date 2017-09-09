@@ -1,0 +1,17 @@
+---
+- name: install ntp
+  apt: name=ntp state=present
+  tags:
+   - ntp-install
+
+- name: ntp config
+  become: true
+  file:
+   src: files/ntp.conf
+   dest: "/etc/ntp.conf"
+
+- name: ssh config
+  become: true
+  file:
+   src: files/sshd_config
+   dest: "/etc/ssh/sshd_config"

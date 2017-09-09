@@ -1,0 +1,15 @@
+---
+- name: install
+  apt: name=nginx state=present
+  tags:
+   - nginx
+   - nginx-install
+  ignore_errors: true
+
+- name: generate VIPs
+  template: src=vip.conf.j2 dest={{ nginx_conf_dir }}/{{ item.key }}.{{ vips[item.key].conf }}
+  with_dict: '{{ vips }}'
+  register: nginx-frontend
+  tags:
+   - nginx
+   - nginx-frontend

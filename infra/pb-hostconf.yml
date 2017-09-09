@@ -1,0 +1,7 @@
+---
+- hosts:
+  - lb-sth
+  become: yes
+  gather_facts: yes
+  roles:
+  - common 

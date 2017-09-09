@@ -1,0 +1,5 @@
+---
+- name: reload ntp 
+  service: name=ntp state=reloaded
+  tags:
+   - ntp
