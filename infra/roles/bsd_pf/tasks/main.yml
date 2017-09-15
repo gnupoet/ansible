@@ -1,16 +1,9 @@
 ---
-- name: install
-  apt: name=nginx state=present
-  tags:
-   - nginx
-   - nginx-install
-  ignore_errors: true
+- name: generate pf.conf 
+  template: src=pf.conf.j2 dest=/dev/pf.conf mode=0600 validate='pfctl -n -f %s'
+  with_dict: '{{ pass_rules }}'
+  tags: pf
 
-  #- name: generate VIPs
-  #template: src=vip.conf.j2 dest={{ nginx_conf_dir }}/{{ item.key }}.{{ vips[item.key].conf }}
-  #with_dict: '{{ vips }}'
-  #register: nginx-frontend
-  #notify: nginx_restart
-  #tags:
-  # - nginx
-  #- nginx-frontend
+- name: make sure pf running
+  service: name=pf state=reloded enabled=yes
+  tags: pf
