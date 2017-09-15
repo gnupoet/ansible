@@ -1,0 +1,12 @@
+---
+site: internal
+pass_rules:
+  infra:
+    order: "OPS001"
+    src-range:
+      - 172.16.2.0/24
+    dst-range:
+      - 172.16.1.0/24
+    dst-ports:
+      - 22
+      - 80

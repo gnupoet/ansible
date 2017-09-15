@@ -1,3 +1,7 @@
 # Ansible generated rules
-{{ rules }}
+{% for items in pass_rules %}
+
+pass quick from {{ pass_rules[item].src-range }} port 80 
+
+{% endfor %}
 
