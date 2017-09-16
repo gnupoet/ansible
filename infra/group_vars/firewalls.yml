@@ -3,10 +3,23 @@ site: internal
 pass_rules:
   infra:
     order: "OPS001"
-    src-range:
+    src_range:
       - 172.16.2.0/24
-    dst-range:
+      - 172.16.3.0/24
+    dst_range:
       - 172.16.1.0/24
-    dst-ports:
+    dst_ports:
       - 22
       - 80
+
+  testenv01:
+    order: "OPS002"
+    src_range:
+      - 172.16.44.0/24
+      - 172.16.55.0/24
+    dst_range:
+      - 172.16.1.0/24
+    dst_ports:
+      - 22
+      - 443
+

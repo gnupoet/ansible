@@ -1,7 +1,5 @@
 # Ansible generated rules
 {% for items in pass_rules %}
-
-pass quick from {{ pass_rules[item].src-range }} port 80 
-
+pass quick from {{ pass_rules[items].src_range }} to {{ pass_rules[items].dst_range }} port {{ pass_rules[items].dst_ports }}
 {% endfor %}
 

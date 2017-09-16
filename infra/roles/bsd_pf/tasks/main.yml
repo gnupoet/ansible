@@ -1,9 +1,9 @@
 ---
 - name: generate pf.conf 
-  template: src=pf.conf.j2 dest=/dev/pf.conf mode=0600 validate='pfctl -n -f %s'
+  template: src=pf.conf.j2 dest=/etc/pf.conf.test mode=0600 validate='pfctl -n -f %s'
   with_dict: '{{ pass_rules }}'
   tags: pf
 
 - name: make sure pf running
-  service: name=pf state=reloded enabled=yes
+  service: name=pf state=reloaded enabled=yes
   tags: pf
