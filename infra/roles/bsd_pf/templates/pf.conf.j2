@@ -1,8 +1,5 @@
 # Ansible generated rules
-{% for items in pass_rules %}
-{% for key, value in items %}
-pass quick from {{ key['pass_rules'].src_range.value }} to {{ pass_rules[items].dst_range }} port {{ pass_rules[items].dst_ports }}
-{{ key.value }}
-{% endfor %}
+{% for item in pass_rules %}
+pass quick from proto {{ pass_rules[item].proto|default('tcp') }} from {{ pass_rules[item].src_range}} to {{ pass_rules[item].dst_range }} port {{ pass_rules[item].dst_ports }} # {{ pass_rules[item].order }}
 {% endfor %}
 
