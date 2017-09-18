@@ -2,7 +2,6 @@
 site: internal
 pass_rules:
   infra:
-    ensure: absent
     order: "OPS001"
     src_range:
       - 172.16.2.0/24
