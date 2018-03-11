@@ -3,6 +3,11 @@
     name: ntp
     state: present
 
+- name: remove help test
+  file:
+    path: /etc/update-motd.d/10-help-text
+    state: absent
+
 - name: copy update-motd
   template:
     src: files/10-sysinfo

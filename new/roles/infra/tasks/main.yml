@@ -3,12 +3,13 @@
   with_items:
     - unbound
     - curl
+    - netfilter-persistent
 
 - name: push unbound.conf
   template:
     src: files/unbound.conf.j2
     dest: /etc/unbound/unbound.conf
-    with_items: host_ip
+    with_items: "{{ dnsserver_ip }}"
     owner: root
     group: root
     mode: 0644
