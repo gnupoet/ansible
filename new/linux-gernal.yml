@@ -1,0 +1,11 @@
+- hosts: all
+  remote_user: david
+  become: yes
+  roles:
+    - general 
+
+- hosts: infra
+  remote_user: david
+  become: yes
+  roles:
+    - infra

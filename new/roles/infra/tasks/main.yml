@@ -1,0 +1,24 @@
+- name: install infra packages
+  apt: name={{ item }} state=present
+  with_items:
+    - unbound
+    - curl
+
+- name: push unbound.conf
+  template:
+    src: files/unbound.conf.j2
+    dest: /etc/unbound/unbound.conf
+    with_items: host_ip
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart unbound
+
+- name: copy unbound.conf.d
+  template:
+    src: files/unbound.conf.d/zonedata.conf
+    dest: /etc/unbound/unbound.conf.d/
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart unbound

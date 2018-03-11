@@ -1,0 +1,37 @@
+- name: Install the package "ntp"
+  apt:
+    name: ntp
+    state: present
+
+- name: copy update-motd
+  template:
+    src: files/10-sysinfo
+    dest: /etc/update-motd.d/10-sysinfo
+    owner: root
+    group: root
+    mode: 0755
+
+- name: copy sudoers
+  template:
+    src: files/sudoers
+    dest: /etc/sudoers
+    owner: root
+    group: root
+    mode: 0440
+
+- name: copy ntp
+  template:
+    src: files/ntp.conf
+    dest: /etc/ntp.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart ntp
+
+- name: iptables block
+  iptables:
+    chain: INPUT
+    source: 172.16.4.0/24
+    jump: DROP
+  become: yes
+  notify: save iptables

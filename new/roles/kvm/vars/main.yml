@@ -1,0 +1,16 @@
+---
+vm_location: "/data/VMs"
+root_pass: "r00fburn"
+
+guests:
+  seivnglnx001:
+    mem: 2048
+    cpus: 2
+    os_type: ubuntu
+    file_type: qcow2
+
+  seinglnx002:
+    mem: 2048
+    cpus: 2
+    os_type: ubuntu
+    file_type: qcow2

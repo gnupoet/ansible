@@ -1,0 +1,6 @@
+#!/bin/sh -e
+#
+
+IP=$(ip route | grep src |awk '{print ($9)}');
+
+echo "\nMachine IP: " $IP

@@ -1,0 +1,39 @@
+# Unbound configuration file for Debian.
+#
+# See the unbound.conf(5) man page.
+#
+# See /usr/share/doc/unbound/examples/unbound.conf for a commented
+# reference config file.
+#
+# The following line includes additional configuration files from the
+# /etc/unbound/unbound.conf.d directory.
+
+server:
+   verbosity: 1
+   interface: {{ dnsserver_ip }}
+
+   port: 53
+   do-ip4: yes
+   do-ip6: no
+   do-udp: yes
+   do-tcp: yes
+
+   access-control: 127.0.0.0/8 allow
+   access-control: 172.16.1.0/26 allow
+   access-control: 172.16.2.0/26 allow
+   access-control: 172.16.3.0/26 allow
+
+   hide-identity: yes
+
+   cache-min-ttl: 3600
+   cache-max-ttl: 86400
+
+   num-threads: 2
+   so-rcvbuf: 1m
+
+   forward-zone:
+      name: "."
+      forward-addr: 8.8.4.4        # Google
+      forward-addr: 8.8.8.8        # Google
+
+include: "/etc/unbound/unbound.conf.d/*.conf"
